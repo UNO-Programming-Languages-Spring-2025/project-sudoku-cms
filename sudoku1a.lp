@@ -6,4 +6,11 @@
 
 % Your implementation please...
 
+row(1..4).
+col(1..4).
+val(1..4).
+
+{sudoku(R,C,V) : val(V)} 1 :- row(R), col(C).
+
+
 #show sudoku/3.
