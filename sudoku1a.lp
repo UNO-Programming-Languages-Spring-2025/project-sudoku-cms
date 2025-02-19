@@ -11,6 +11,7 @@ col(1..4).
 val(1..4).
 
 {sudoku(R,C,V) : val(V)} 1 :- row(R), col(C).
-
+{sudoku(R,C,V) : col(C) } 1 :- row(R), val(V).
+{sudoku(R,C,V) : row(R) } 1 :- col(C), val(V).
 
 #show sudoku/3.
