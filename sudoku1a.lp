@@ -11,7 +11,7 @@ col(1..4).
 val(1..4).
 
 {sudoku(R,C,V) : val(V)} 1 :- row(R), col(C).
-:- sudoku(R,C1,V), sudoku(R,C2,V), C1 != C2.
-:- sudoku(R1,C,V), sudoku(R2,C,V), R1 != R2.
+:- val(V), row(R), col(C1), col(C2), C1 != C2, sudoku(R,C1,V), sudoku(R,C2,V).
+al(V), col(C), row(R1), row(R2), R1 != R2, sudoku(R1,C,V), sudoku(R2,C,V).
 
 #show sudoku/3.
