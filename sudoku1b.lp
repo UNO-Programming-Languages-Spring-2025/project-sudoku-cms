@@ -24,4 +24,12 @@ val(1..4).
 % Each column has each value exactly once
 1 { sudoku(R,C,V) : row(R) } 1 :- col(C), val(V).
 
+% For a 4x4 board (2 x 2 subgrids)
+subgrid(R,C,1) :- row(R), col(C), R <= 2, C <= 2.
+subgrid(R,C,2) :- row(R), col(C), R <= 2, C > 2.
+subgrid(R,C,3) :- row(R), col(C), R > 2, C <= 2.
+subgrid(R,C,4) :- row(R), col(C), R > 2, C > 2.
+
+% Show directives
 #show sudoku/3.
+#show subgrid/3.
