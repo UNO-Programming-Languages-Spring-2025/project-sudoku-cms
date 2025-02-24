@@ -30,6 +30,11 @@ subgrid(R,C,2) :- row(R), col(C), R <= 2, C > 2.
 subgrid(R,C,3) :- row(R), col(C), R > 2, C <= 2.
 subgrid(R,C,4) :- row(R), col(C), R > 2, C > 2.
 
-% Show directives
+% No two elements within any subgrid can equal eachother
+% all subgrid values should be distinct.
+:- sudoku(R1,C1,V), sudoku(R2,C2,V), 
+   subgrid(R1,C1,G), subgrid(R2,C2,G),
+   (R1,C1) != (R2,C2).
+
+% Show directives (for sudoku only)
 #show sudoku/3.
-#show subgrid/3.
