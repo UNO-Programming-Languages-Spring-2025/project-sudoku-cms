@@ -11,9 +11,9 @@
 % Put the initial numbers into the sudoku grid
 sudoku(X, Y, N) :- initial(X ,Y, N).
 
-row(1..4).
-col(1..4).
-val(1..4).
+row(1..9).
+col(1..9).
+val(1..9).
 
 %  Every row and column must contain one value
 1 { sudoku(R,C,V) : val(V) } 1 :- row(R), col(C).
@@ -24,11 +24,16 @@ val(1..4).
 % Each column has each value exactly once
 1 { sudoku(R,C,V) : row(R) } 1 :- col(C), val(V).
 
-% For a 4x4 board (2 x 2 subgrids)
-subgrid(R,C,1) :- row(R), col(C), R <= 2, C <= 2.
-subgrid(R,C,2) :- row(R), col(C), R <= 2, C > 2.
-subgrid(R,C,3) :- row(R), col(C), R > 2, C <= 2.
-subgrid(R,C,4) :- row(R), col(C), R > 2, C > 2.
+% For a 9x9 board (3 x 3 subgrids, 9 subgrids)
+subgrid(R,C,1) :- row(R), col(C), R <= 3, C <= 3.
+subgrid(R,C,2) :- row(R), col(C), R <= 3, C > 3, C <= 6.
+subgrid(R,C,3) :- row(R), col(C), R <= 3, C > 6.
+subgrid(R,C,4) :- row(R), col(C), R > 3, R <= 6, C <= 3.
+subgrid(R,C,5) :- row(R), col(C), R > 3, R <= 6, C > 3, C <= 6.
+subgrid(R,C,6) :- row(R), col(C), R > 3, R <= 6, C > 6.
+subgrid(R,C,7) :- row(R), col(C), R > 6, C <= 3.
+subgrid(R,C,8) :- row(R), col(C), R > 6, C <= 6, C > 3.
+subgrid(R,C,9) :- row(R), col(C), R > 6, C > 6.
 
 % No two elements within any subgrid can equal eachother
 % all subgrid values should be distinct.
